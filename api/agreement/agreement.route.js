@@ -1,9 +1,14 @@
 const router=require("express").Router();
-
+const {findAgreement,findAgreementCustomer,updateUpload,updatePrint,removeAgreement,addAgreement}=require("./agreement.controller");
 /*******************************************
  * To handle all Valid Request
  *******************************************/
-router.get("/");
+router.get("/:id",findAgreement);
+router.get("/customer/:id",findAgreementCustomer);
+router.get("/print/:id",updatePrint);
+router.get("/upload/:id",updateUpload);
+router.get("/remove/:id",removeAgreement);
+router.get("/add/:id",addAgreement);
 
 
 
