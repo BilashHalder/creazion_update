@@ -8,13 +8,14 @@ app.use(express.json());
 const AdminRoute=require("./api/admin/admin.route");
 const PaymentRoute=require("./api/payment/payment.router");
 const nominiRouter=require("./api/nomini/nomini.route");
-
+const BankAccountRouter=require("./api/bank_account/bank_account.route");
 /*********************
  * Define all the Routes
  *********************/
 app.use("/api/admin",AdminRoute);
 app.use("/api/payment",PaymentRoute);
 app.use("/api/nomini",nominiRouter);
+app.use("/api/bank",BankAccountRouter);
 
 
 /************************
