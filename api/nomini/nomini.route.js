@@ -1,10 +1,17 @@
 const router=require("express").Router();
+const {getNominiById,findCustomerNomini,removeNominiById,removeNominiesByCustomerId,updateNomini,addNomini}=require("./nomini.controller");
+
 
 /*******************************************
  * To handle all Valid Request
  *******************************************/
-router.get("/");
 
+router.get("/:id",getNominiById);
+router.get("/customer/:id",findCustomerNomini);
+router.get("/remove/:id",removeNominiById);
+router.get("/remove/customer/:id",removeNominiesByCustomerId);
+router.post("/",addNomini);
+router.post("/update",updateNomini);
 
 
   /*To handle all invalid request */  

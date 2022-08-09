@@ -2,6 +2,8 @@ const router=require("express").Router();
 
 const {addPayment,findPayment,findCustomerPayments,removePayment,updatePayment}=require("./payment.controller");
 
+
+
 /*******************************************
  * To handle all Valid Request
  *******************************************/
@@ -12,7 +14,10 @@ router.post("/",addPayment);
 router.post("/update",updatePayment);
 
 
-  /*To handle all invalid request */  
+
+/*******************************************
+ * To handle all invalid request
+ *******************************************/  
   router.all("*",(request,response)=>{
     response.status(500).json({
         status:"failed",

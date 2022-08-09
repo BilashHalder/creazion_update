@@ -1,3 +1,4 @@
+const res = require("express/lib/response");
 const dbcon = require("../../config/dbconfig");
 
 const add = (data, callBack) => {
@@ -7,17 +8,6 @@ const add = (data, callBack) => {
         return callBack(null,result);
     });
 }
-
-
-const update = () => (data,callBack) => {
-    dbcon.query('UPDATE payment SET customer_id=?,ammount=?,transaction_id=?,payment_type=?,payment_verified=?,payment_mode=? WHERE payment_id=?', [data.customer_id,data.ammount,data.transaction_id,data.payment_type,data.payment_verified,data.payment_mode,data.payment_id], (err, result, fields) => {
-        if(err)
-        return callBack(err);
-        return callBack(null,result);
-    });
-}
-
-
 
 const find = (id, callBack) => {
     dbcon.query('SELECT * FROM payment WHERE payment_id=?', [id], (err, result, fields) => {
@@ -42,4 +32,11 @@ const remove = (id, callBack) => {
     });
 }  
  
-module.exports={add,update,find,findByCutomerId,remove}
+const modify = (data,callBack) => {
+    dbcon.query('UPDATE payment SET customer_id=?,ammount=?,transaction_id=?,payment_type=?,payment_verified=?,payment_mode=? WHERE payment_id=?', [data.customer_id,data.ammount,data.transaction_id,data.payment_type,data.payment_verified,data.payment_mode,data.payment_id], (err, result, fields) => {
+        if(err)
+        return callBack(err);
+        return callBack(null,result);
+    }); 
+ }
+module.exports={add,modify,find,findByCutomerId,remove}

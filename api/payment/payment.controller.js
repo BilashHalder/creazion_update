@@ -1,4 +1,4 @@
-const {add,update,find,findByCutomerId,remove}=require("./payment.services");
+const {add,modify,find,findByCutomerId,remove}=require("./payment.services");
 
 const addPayment=(req,res)=>{
 
@@ -124,23 +124,16 @@ else{
 const updatePayment=(req,res)=>{
 
     let data=req.body;
-
-//validat the payment object
-
-update(data.payment_id,data,(err,result)=>{
-  if(err){
-    res.status(500).json({
-        message:"internal Server Error"
+    modify(data,(err,result)=>{
+        if(err)
+        res.status(500).json({messgae:"internal Server error"});
+        else{
+            res.status(200).json({
+                messgae:"data updated"
+            });
+        }
     });
-  }
-  else{
-    res.status(200).json({
-        message:"payment information Updated",
-        data:result
-      }); 
-  }
-  
-})
+
 }
 
 module.exports={addPayment,findPayment,findCustomerPayments,removePayment,updatePayment}
