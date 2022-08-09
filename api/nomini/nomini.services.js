@@ -58,4 +58,5 @@ const removecustomernomini = (customerId, callBack) => {
 
 
 
+
 module.exports={add,update,find,customernominifind,remove,removecustomernomini}
