@@ -42,7 +42,7 @@ const remove = (nominiid, callBack) => {
         return callBack(err);
         return callBack(null,result);
     });
-} 
+}   
 
 
 
