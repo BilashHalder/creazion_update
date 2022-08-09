@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 09, 2022 at 11:12 AM
+-- Generation Time: Aug 09, 2022 at 09:00 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -52,11 +52,22 @@ INSERT INTO `admin` (`admin_id`, `name`, `phone`, `email`, `lmage`, `password`, 
 
 CREATE TABLE `agreement` (
   `agreement_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
   `file_name` varchar(100) DEFAULT NULL,
-  `upload_date` datetime NOT NULL,
-  `print_date` datetime NOT NULL,
+  `upload_date` datetime DEFAULT NULL,
+  `print_date` datetime DEFAULT NULL,
   `status` tinyint(4) NOT NULL COMMENT '0-Not generated 1-Genarated'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `agreement`
+--
+
+INSERT INTO `agreement` (`agreement_id`, `customer_id`, `file_name`, `upload_date`, `print_date`, `status`) VALUES
+(2, 3, 'myfile.pdf', '2022-08-10 00:09:55', '2022-08-10 00:09:33', 0),
+(3, 2, NULL, NULL, NULL, 0),
+(4, 7, NULL, NULL, NULL, 0),
+(7, 9, 'myfile.pdf', '2022-08-10 00:27:41', '2022-08-10 00:27:46', 0);
 
 -- --------------------------------------------------------
 
@@ -85,7 +96,6 @@ CREATE TABLE `customer` (
   `email` varchar(60) NOT NULL,
   `customer_type` tinyint(4) NOT NULL COMMENT '1-RE 2-BA 3-Customer',
   `refereed_by` int(11) NOT NULL,
-  `agreement_id` int(11) NOT NULL,
   `status` tinyint(4) NOT NULL COMMENT '0-Not Verified 1-Verified & Active 2-Deactivate	',
   `password` varchar(100) NOT NULL,
   `image` varchar(100) NOT NULL
@@ -237,7 +247,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `agreement`
 --
 ALTER TABLE `agreement`
-  MODIFY `agreement_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `agreement_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `customer`
