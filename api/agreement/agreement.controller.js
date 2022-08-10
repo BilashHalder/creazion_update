@@ -1,16 +1,17 @@
-const {add,find,remove,findcustomer,updateprint,updateupload}=require("./agreement.services")
+const {add,find,remove,findcustomer,updateprint,updateupload}=require("./agreement.services");
+const {SERVERERROR,NOTFOUND,UPDATEMSG}=require("../../lang/en");
 const findAgreement=(req,res)=>{
 find(req.params.id,(err,result)=>{
     if(err)
     res.status(500).json({
-        message:"Internal Server Error"
+        message:SERVERERROR
     });
     else if(result.length){
         res.status(200).json(result); 
     }
     else{
         res.status(400).json({
-            message:"data not found"
+            message:NOTFOUND
         });  
     }
 });
@@ -19,14 +20,14 @@ const findAgreementCustomer=(req,res)=>{
     findcustomer(req.params.id,(err,result)=>{
         if(err)
         res.status(500).json({
-            message:"Internal Server Error"
+            message:SERVERERROR
         });
         else if(result.length){
             res.status(200).json(result); 
         }
         else{
             res.status(400).json({
-                message:"data not found"
+                message:NOTFOUND
             });  
         }
     });
@@ -36,16 +37,16 @@ const updatePrint=(req,res)=>{
     updateprint(req.params.id,(err,result)=>{
         if(err)
         res.status(500).json({
-            message:"Internal Server Error"
+            message:SERVERERROR
         });
         else if(result.affectedRows){
             res.status(200).json({
-                message:"data updated"
+                message:UPDATEMSG
             }); 
         }
         else{
             res.status(400).json({
-                message:"data not found"
+                message:NOTFOUND
             });  
         }
     });
@@ -55,16 +56,16 @@ const updateUpload=(req,res)=>{
     updateupload(req.params.id,"myfile.pdf",(err,result)=>{
         if(err)
         res.status(500).json({
-            message:"Internal Server Error"
+            message:SERVERERROR
         });
         else if(result.affectedRows){
             res.status(200).json({
-                message:"data updated"
+                message:UPDATEMSG
             }); 
         }
         else{
             res.status(400).json({
-                message:"data not found"
+                message:NOTFOUND
             });  
         }
     });
@@ -76,7 +77,7 @@ const removeAgreement=(req,res)=>{
     remove(req.params.id,(err,result)=>{
     if(err){
     res.status(500).json({
-        message:"Internal Server Error"
+        message:SERVERERROR
     });
     }
     else{
@@ -100,7 +101,7 @@ const removeAgreement=(req,res)=>{
         findcustomer(id,(err,result)=>{
             if(err){
                 res.status(500).json({
-                    message:"Internal Server Error"
+                    message:SERVERERROR
                 });
             }
             
@@ -116,7 +117,7 @@ const removeAgreement=(req,res)=>{
                     if(err)
                     {
                         res.status(500).json({
-                            message:"Internal Server Error"
+                            message:SERVERERROR
                         });
                     }
                     else{

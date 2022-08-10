@@ -1,7 +1,7 @@
 const dbcon = require("../../config/dbconfig");
 
 const add = (data, callBack) => {
-    dbcon.query('', [], (err, result, fields) => {
+    dbcon.query('INSERT INTO admin(name, phone, email, pass) VALUES (?,?,?,?)', [data.name,data.phone,data.email,data.pass], (err, result, fields) => {
         if(err)
         return callBack(err);
         return callBack(null,result);
@@ -10,7 +10,8 @@ const add = (data, callBack) => {
 
 
 const update = (data, callBack) => {
-    dbcon.query('', [], (err, result, fields) => {
+    dbcon.query('UPDATE admin SET name=?,phone=?,email=?,pass=? WHERE admin_id=?', 
+    [data.name,data.phone,data.email,data.pass,data.admin_id], (err, result, fields) => {
         if(err)
         return callBack(err);
         return callBack(null,result);
@@ -26,7 +27,7 @@ const findById = (id, callBack) => {
 }
 
 const findByEmail = (email, callBack) => {
-    dbcon.query('SELECT * FROM admin WHERE email=?', [id], (err, result, fields) => {
+    dbcon.query('SELECT * FROM admin WHERE email=?', [email], (err, result, fields) => {
         if(err)
         return callBack(err);
         return callBack(null,result);

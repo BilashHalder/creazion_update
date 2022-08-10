@@ -1,5 +1,5 @@
 const {add,update,find,customernominifind,remove,removecustomernomini} = require("./nomini.services")
-
+const {SERVERERROR,NOTFOUND,UPDATEMSG}=require("../../lang/en");
 /**
  * Get Nomini information by Nomini id
  */
@@ -33,7 +33,7 @@ const findCustomerNomini = (req, res) => {
     customernominifind(req.params.id, (err, result) => {
         if (err) {
             res.status(500).json({
-                messgae: "internal Server error"
+                messgae:SERVERERROR
             });
         }
         else if (result.length) {
@@ -43,7 +43,7 @@ const findCustomerNomini = (req, res) => {
         }
         else {
             res.status(400).json({
-                messgae: "data not bbbb found"
+                messgae: NOTFOUND
             });
         }
 
@@ -60,7 +60,7 @@ const removeNominiById=(req,res)=>{
     remove(req.params.id,(err,result)=>{
         if(err){
             res.status(500).json({
-                messgae:"Internal Server Error"
+                messgae:SERVERERROR
             });
         }
 
@@ -71,7 +71,7 @@ const removeNominiById=(req,res)=>{
         }
         else{
             res.status(400).json({
-                messgae:"data not found"
+                messgae:NOTFOUND
             }); 
         }
     });   
@@ -85,7 +85,7 @@ const removeNominiesByCustomerId=(req,res)=>{
     removecustomernomini(req.params.id,(err,result)=>{
         if(err){
             res.status(500).json({
-                messgae:"Internal Server Error"
+                messgae:SERVERERROR
             });
         }
 
@@ -96,7 +96,7 @@ const removeNominiesByCustomerId=(req,res)=>{
         }
         else{
             res.status(400).json({
-                messgae:"data not found"
+                messgae:NOTFOUND
             }); 
         }
     });
@@ -114,18 +114,18 @@ const updateNomini=(req,res)=>{
     update(data,(err,result)=>{
         if(err){
             res.status(500).json({
-                messgae:"Internal Server Error"
+                messgae:SERVERERROR
             });
         }
 
         else if(result.affectedRows){
             res.status(200).json({
-                messgae:"data Updated successfully"
+                messgae:UPDATEMSG
             });
         }
         else{
             res.status(400).json({
-                messgae:"data not found"
+                messgae:NOTFOUND
             }); 
         }
     });
@@ -147,7 +147,7 @@ const addNomini=(req,res)=>{
         if(err)
         {
             res.status(500).json({
-                messgae:"internal Server Error"
+                messgae:SERVERERROR
             });
         }
         else{

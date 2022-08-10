@@ -1,5 +1,5 @@
 const {add,update,findbyAccount,find,remove}=require("./bank_account.services")
-
+const {SERVERERROR,NOTFOUND,UPDATEMSG}=require("../../lang/en");
 /**
  * Get user Bank Information
  */
@@ -8,7 +8,7 @@ const userBankInfo=(req,res)=>{
    find(req.params.id,(err,result)=>{
    if(err){
     res.status(500).json({
-        message:"inetrnal Server Error"
+        message:SERVERERROR
     });
    }
    else if(result.length){
@@ -16,7 +16,7 @@ const userBankInfo=(req,res)=>{
    }
    else{
     res.status(400).json({
-        message:"data not found"
+        message:NOTFOUND
     });
    }
    });
@@ -30,7 +30,7 @@ const findByAccountNumber=(req,res)=>{
     findbyAccount(req.params.id,(err,result)=>{
         if(err){
          res.status(500).json({
-             message:"inetrnal Server Error"
+             message:SERVERERROR
          });
         }
         else if(result.length){
@@ -38,7 +38,7 @@ const findByAccountNumber=(req,res)=>{
         }
         else{
          res.status(400).json({
-             message:"data not found"
+             message:NOTFOUND
          });
         }
         }); 
@@ -53,7 +53,7 @@ let data=req.body;
 find(data.user_id,(err,result)=>{
 if(err){
     res.status(500).json({
-        message:"internal server error"
+        message:SERVERERROR
     });
 }
 else if(result.length){
@@ -65,7 +65,7 @@ else{
     findbyAccount(data.account_no,(err,result)=>{
        if(err){
         res.status(500).json({
-            message:"internal server error"
+            message:SERVERERROR
         });
        }
        else if(result.length){
@@ -78,7 +78,7 @@ else{
             
             if(err){
                 res.status(500).json({
-                    message:"internal server error"
+                    message:SERVERERROR
                 });  
             }
             else{
@@ -89,7 +89,7 @@ else{
                 }
                 else{
                     res.status(500).json({
-                        message:"internal server error"
+                        message:SERVERERROR
                     });   
                 }
             }
@@ -109,7 +109,7 @@ const removeBankAccount=(req,res)=>{
     remove(req.params.id,(err,result)=>{
         if(err){
             res.status(500).json({
-                message:"inetrnal Server Error"
+                message:SERVERERROR
             });
            }
            else if(result.affectedRows){
@@ -119,7 +119,7 @@ const removeBankAccount=(req,res)=>{
            }
            else{
             res.status(400).json({
-                message:"data not found"
+                message:NOTFOUND
             });
            }  
     });
@@ -134,17 +134,17 @@ let data=req.body;
 update(data,(err,result)=>{
     if(err){
         res.status(500).json({
-            message:"inetrnal Server Error"
+            message:SERVERERROR
         });
        }
        else if(result.affectedRows){
         res.status(200).json({
-            message:"data Updated"
+            message:UPDATEMSG
         });
        }
        else{
         res.status(400).json({
-            message:"data not found"
+            message:NOTFOUND
         });
        } 
 });
