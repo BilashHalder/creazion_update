@@ -1,5 +1,5 @@
 const {add,update,find,remove,findpan,findadhar}=require("./documents.services");
-const {SERVERERROR,NOTFOUND,UPDATEMSG}=require("../../lang/en");
+const {SERVERERROR,NOTFOUND,UPDATEMSG,DATADELETE,DATAINVALID,DATAADD}=require("../../lang/en");
 const findDocument=(req,res)=>{
     find(req.params.id,(err,result)=>{
         if(err){
@@ -33,7 +33,7 @@ add(data,(err,result)=>{
     }
     else{
         res.status(201).json({
-            messgae:"document saved"
+            messgae:DATAADD
         });  
     }
 });
@@ -46,7 +46,7 @@ const updateDocument=(req,res)=>{
         res.status(500).json({messgae:SERVERERROR});
         else{
             res.status(200).json({
-                messgae:"data updated"
+                messgae:UPDATEMSG
             });
         }
     });
@@ -62,12 +62,12 @@ const removeDocument=(req,res)=>{
         else{
             if(result.affectedRows){
                 res.status(200).json({
-                    message:"data deleted"
+                    message:DATADELETE
                 });
             }
            else{
             res.status(400).json({
-                message:"data not valid"
+                message:DATAINVALID
             });
            }
         }

@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const salt = bcrypt.genSaltSync(10);
-const {SERVERERROR,NOTFOUND,UPDATEMSG}=require("../../lang/en");
+const {SERVERERROR,NOTFOUND,UPDATEMSG,PHONEXIST,EMAILEXIST,DATADELETE}=require("../../lang/en");
 const {add,update,findById,findByEmail,findByPhone,remove}=require("./admin.services");
 const addAdmin=async (req,res)=>{
     let data=req.body;
@@ -12,7 +12,7 @@ const addAdmin=async (req,res)=>{
         });
         else if(result1.length){
             res.status(200).json({
-                message:"Email Already Registerd"  
+                message:EMAILEXIST  
             });   
         }
         else{
@@ -24,7 +24,7 @@ const addAdmin=async (req,res)=>{
                 }
                 else if(result2.length){
                     res.status(200).json({
-                        message:"Phone Number Already Registerd"  
+                        message:PHONEXIST  
                     });  
                 }
                 else{
@@ -94,7 +94,7 @@ const getAdmin=(req,res) =>{
     findByPhone(req.params.id,(err,result)=>{
         if(err){
             res.status(500).json({
-                message:"internal Server error"
+                message:SERVERERROR
             });
         }
         else{
@@ -103,7 +103,7 @@ const getAdmin=(req,res) =>{
             }
             else{
                 res.status(400).json({
-                    message:"data not found"
+                    message:NOTFOUND
                 });  
             }
         }
@@ -126,7 +126,7 @@ const getAdmin=(req,res) =>{
         else{
             if(result.affectedRows){
                 res.status(200).json({
-                    message:"admin information deleted"
+                    message:DATADELETE
                 });
             }
             else{

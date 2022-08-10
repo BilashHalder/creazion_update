@@ -1,5 +1,5 @@
 const {add,update,findbyAccount,find,remove}=require("./bank_account.services")
-const {SERVERERROR,NOTFOUND,UPDATEMSG}=require("../../lang/en");
+const {SERVERERROR,NOTFOUND,UPDATEMSG,DATAADD,DATADELETE}=require("../../lang/en");
 /**
  * Get user Bank Information
  */
@@ -84,7 +84,7 @@ else{
             else{
                 if(resultb.affectedRows){
                     res.status(201).json({
-                        message:"Bank Account Information Saved"
+                        message:DATAADD
                     }); 
                 }
                 else{
@@ -114,7 +114,7 @@ const removeBankAccount=(req,res)=>{
            }
            else if(result.affectedRows){
             res.status(200).json({
-                message:"data deleted"
+                message:DATADELETE
             });
            }
            else{

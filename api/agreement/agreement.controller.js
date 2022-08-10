@@ -1,5 +1,5 @@
 const {add,find,remove,findcustomer,updateprint,updateupload}=require("./agreement.services");
-const {SERVERERROR,NOTFOUND,UPDATEMSG}=require("../../lang/en");
+const {SERVERERROR,NOTFOUND,UPDATEMSG,DATADELETE,DATAADD}=require("../../lang/en");
 const findAgreement=(req,res)=>{
 find(req.params.id,(err,result)=>{
     if(err)
@@ -83,12 +83,12 @@ const removeAgreement=(req,res)=>{
     else{
         if(result.affectedRows){
             res.status(200).json({
-                message:"data deleted"
+                message:DATADELETE
             });
         }
        else{
         res.status(400).json({
-            message:"data not valid"
+            message:NOTFOUND
         });
        }
     }
@@ -122,7 +122,7 @@ const removeAgreement=(req,res)=>{
                     }
                     else{
                         res.status(201).json({
-                            message:"Agreement Added"
+                            message:DATAADD
                         });  
                     }
                 });    

@@ -1,5 +1,5 @@
 const {add,update,find,customernominifind,remove,removecustomernomini} = require("./nomini.services")
-const {SERVERERROR,NOTFOUND,UPDATEMSG}=require("../../lang/en");
+const {SERVERERROR,NOTFOUND,UPDATEMSG,DATADELETE,DATAADD}=require("../../lang/en");
 /**
  * Get Nomini information by Nomini id
  */
@@ -8,7 +8,7 @@ const getNominiById = (req, res) => {
     find(req.params.id, (err, result) => {
         if (err) {
             res.status(500).json({
-                messgae: "internal Server error"
+                messgae: SERVERERROR
             });
         }
         else if (result.length) {
@@ -18,7 +18,7 @@ const getNominiById = (req, res) => {
         }
         else {
             res.status(400).json({
-                messgae: "data not found"
+                messgae: NOTFOUND
             });
         }
     });
@@ -66,7 +66,7 @@ const removeNominiById=(req,res)=>{
 
         else if(result.affectedRows){
             res.status(200).json({
-                messgae:"data deleted successfully"
+                messgae:DATADELETE
             });
         }
         else{
@@ -91,7 +91,7 @@ const removeNominiesByCustomerId=(req,res)=>{
 
         else if(result.affectedRows){
             res.status(200).json({
-                messgae:"data deleted successfully"
+                messgae:DATADELETE
             });
         }
         else{
@@ -153,7 +153,7 @@ const addNomini=(req,res)=>{
         else{
             data.id=result.insertId;
             res.status(201).json({
-                messgae:"nomini created",
+                messgae:DATAADD,
                 data:data
             });  
         }

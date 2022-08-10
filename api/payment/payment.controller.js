@@ -1,5 +1,5 @@
 const {add,modify,find,findByCutomerId,remove}=require("./payment.services");
-
+const {SERVERERROR,NOTFOUND,UPDATEMSG,DATAADD,DATAINVALID,DATADELETE}=require("../../lang/en");
 const addPayment=(req,res)=>{
 
     //validate the payment object must implemented
@@ -11,14 +11,14 @@ add(data,(err,result)=>{
 if(err)
 {
     res.status(500).json({
-        message:"ineternal Server Error"
+        message:SERVERERROR
     });
 }
 else{
     find(result.insertId,(err,result)=>{
         if(err){
             res.status(200).json({
-                message:"payment added"
+                message:DATAADD
             });
         }
         else{
@@ -42,13 +42,13 @@ const findPayment=(req,res)=>{
     find(req.params.id,(err,result)=>{
         if(err){
             res.status(500).json({
-                msg:"internal Server Error"
+                message:SERVERERROR
             });
         }
         else{
             if(result.length==0){
                 res.status(404).json({
-                    message:"data not found"
+                    message:NOTFOUND
                 })
             }
            else{
@@ -70,7 +70,7 @@ const findCustomerPayments=(req,res)=>{
     findByCutomerId(req.params.id,(err,result)=>{
 if(err){
     res.status(500).json({
-        message:"internal Server Error"
+        message:SERVERERROR
     })
 }
 else{
@@ -81,7 +81,7 @@ else{
     }
     else{
         res.status(400).json({
-            message:"data not found"
+            message:NOTFOUND
         });
     }
    
@@ -99,18 +99,18 @@ const removePayment=(req,res)=>{
 remove(req.params.id,(err,result)=>{
 if(err){
 res.status(500).json({
-    message:"Internal Server Error"
+    message:SERVERERROR
 });
 }
 else{
     if(result.affectedRows){
         res.status(200).json({
-            message:"data deleted"
+            message:DATADELETE
         });
     }
    else{
     res.status(400).json({
-        message:"data not valid"
+        message:DATAINVALID
     });
    }
 }
@@ -126,10 +126,10 @@ const updatePayment=(req,res)=>{
     let data=req.body;
     modify(data,(err,result)=>{
         if(err)
-        res.status(500).json({messgae:"internal Server error"});
+        res.status(500).json({messgae:SERVERERROR});
         else{
             res.status(200).json({
-                messgae:"data updated"
+                messgae:UPDATEMSG
             });
         }
     });

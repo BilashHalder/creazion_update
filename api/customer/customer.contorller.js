@@ -1,5 +1,5 @@
 const {add,update,findById,findByEmail,findByPhone,remove,updatepass}=require("./customer.services");
-const {SERVERERROR,NOTFOUND,UPDATEMSG}=require("../../lang/en");
+const {SERVERERROR,NOTFOUND,UPDATEMSG,DATADELETE,DATAINVALID}=require("../../lang/en");
 const FindById=(req,res)=>{
     findById(req.params.id,(err,result)=>{
         if(err){
@@ -105,12 +105,12 @@ const updateCustomer=(req,res)=>{
             else{
                 if(result.affectedRows){
                     res.status(200).json({
-                        message:"customer information deleted"
+                        message:DATADELETE
                     });
                 }
                else{
                 res.status(400).json({
-                    message:"data not valid"
+                    message:DATAINVALID
                 });
                }
             }
