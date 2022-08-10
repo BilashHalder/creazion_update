@@ -11,16 +11,20 @@ const nominiRouter=require("./api/nomini/nomini.route");
 const BankAccountRouter=require("./api/bank_account/bank_account.route");
 const AgreementRouter=require("./api/agreement/agreement.route");
 const DocumentRouter=require("./api/documents/documents.route");
-
+const CustomerRouter=require("./api/customer/customer.route");
 /*********************
  * Define all the Routes
  *********************/
+
+
 app.use("/api/admin",AdminRoute);
 app.use("/api/payment",PaymentRoute);
 app.use("/api/nomini",nominiRouter);
 app.use("/api/bank",BankAccountRouter);
 app.use("/api/agreement",AgreementRouter);
 app.use("/api/doc",DocumentRouter);
+app.use("/api/customer",CustomerRouter);
+
 
 
 /************************

@@ -1,9 +1,17 @@
 const router=require("express").Router();
-
+const {FindById,FindByEmail,FindByPhone,addCustomer,updateCustomer,removeCustomer}=require("./customer.contorller");
 /*******************************************
  * To handle all Valid Request
  *******************************************/
-router.get("/");
+router.get("/:id",FindById);
+router.get("/email/:id",FindByEmail);
+router.get("/phone/:id",FindByPhone);
+router.post("/",addCustomer);
+router.post("/update",updateCustomer);
+router.get("/remove/:id",removeCustomer);
+
+
+
 
 
 
