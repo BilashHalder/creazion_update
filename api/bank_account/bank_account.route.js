@@ -1,6 +1,6 @@
 const router=require("express").Router();
 const { Route } = require("express");
-const {userBankInfo,findByAccountNumber}=require("./bank_account.controller")
+const {userBankInfo,findByAccountNumber,addBankAccount,removeBankAccount,updateBankAccount}=require("./bank_account.controller")
 
 /*******************************************
  * To handle all Valid Request
@@ -8,6 +8,11 @@ const {userBankInfo,findByAccountNumber}=require("./bank_account.controller")
 
 router.get("/:id",userBankInfo);
 router.get("/account/:id",findByAccountNumber);
+router.post("/",addBankAccount);
+router.get("/remove/:id",removeBankAccount);
+router.post("/update",updateBankAccount);
+
+
   /*To handle all invalid request */  
   router.all("*",(request,response)=>{
     response.status(500).json({

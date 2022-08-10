@@ -3,6 +3,7 @@ const {findAgreement,findAgreementCustomer,updateUpload,updatePrint,removeAgreem
 /*******************************************
  * To handle all Valid Request
  *******************************************/
+
 router.get("/:id",findAgreement);
 router.get("/customer/:id",findAgreementCustomer);
 router.get("/print/:id",updatePrint);
@@ -20,5 +21,6 @@ router.get("/add/:id",addAgreement);
     });
     });  
 
+    
 module.exports=router;
 
