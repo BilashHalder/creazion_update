@@ -1,9 +1,13 @@
 const router=require("express").Router();
-
+const {findDocument,addDocument,updateDocument,removeDocument}=require("./documents.controller")
 /*******************************************
  * To handle all Valid Request
  *******************************************/
-router.get("/");
+router.get("/:id",findDocument);
+router.post("/",addDocument);
+router.post("/update",updateDocument);
+router.get("/remove/:id",removeDocument);
+
 
 
 
